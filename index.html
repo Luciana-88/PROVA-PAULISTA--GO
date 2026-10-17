@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1f73d1" />
+  <title>Prova Paulista — Gestão de Operações</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="coinLayer" aria-hidden="true"></div>
+
+  <main id="app">
+    <section id="startScreen" class="screen active">
+      <div class="cover-bg"></div>
+      <div class="start-overlay"></div>
+      <div class="start-content">
+        <div class="pixel-badge">PROVA PAULISTA</div>
+        <h1>Correção</h1>
+        <div class="subtitle">GESTÃO DE OPERAÇÕES</div>
+        <div class="section-code">Seção 51067 • Questões 11 a 16</div>
+        <button id="startBtn" class="pixel-btn primary">▶ INICIAR JOGO</button>
+        <p class="hint">Responda às questões, confira o resultado e leia o gabarito explicativo.</p>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen">
+      <header class="hud">
+        <div class="hud-item">
+          <span class="hud-label">FASE</span>
+          <strong id="progress">1 / 6</strong>
+        </div>
+        <div class="hud-item score-box">
+          <span class="hud-label">MOEDAS</span>
+          <strong>🪙 <span id="score">0</span></strong>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">TEMPO</span>
+          <strong>⏱ <span id="timer">00:00</span></strong>
+        </div>
+      </header>
+
+      <div class="game-world">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="hill hill1"></div>
+        <div class="hill hill2"></div>
+        <div class="pipe"></div>
+        <div class="brick-row"></div>
+        <div class="player">
+          <div class="cap"></div><div class="head"></div><div class="body"></div>
+        </div>
+        <div class="ground"></div>
+
+        <div class="quiz-wrap">
+          <article class="quiz-card">
+            <div class="question-top">
+              <span class="question-number" id="questionNumber">QUESTÃO 11</span>
+              <span class="question-type" id="questionType">RESPOSTA ÚNICA</span>
+            </div>
+            <h2 id="questionTitle"></h2>
+            <div id="prompt" class="prompt"></div>
+            <div id="questionImageWrap" class="question-image-wrap hidden">
+              <img id="questionImage" alt="Imagem de apoio da questão" />
+            </div>
+            <div id="multiNote" class="multi-note hidden"></div>
+            <div id="options" class="options"></div>
+            <button id="answerBtn" class="pixel-btn answer-btn">CONFIRMAR RESPOSTA</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="feedbackScreen" class="screen">
+      <div class="feedback-panel">
+        <div id="feedbackIcon" class="feedback-icon">★</div>
+        <h2 id="feedbackTitle"></h2>
+        <p id="feedbackMessage"></p>
+        <div class="answer-summary">
+          <span>Resposta correta:</span>
+          <strong id="correctAnswer"></strong>
+        </div>
+        <div class="explanation-box">
+          <div class="explanation-title">📖 GABARITO EXPLICATIVO</div>
+          <p id="explanation"></p>
+        </div>
+        <button id="nextBtn" class="pixel-btn primary">PRÓXIMA FASE ▶</button>
+      </div>
+    </section>
+
+    <section id="endScreen" class="screen">
+      <div class="end-panel">
+        <div class="pixel-badge">FASE CONCLUÍDA</div>
+        <h2>🏆 PARABÉNS!</h2>
+        <p>Você terminou a correção de <strong>Gestão de Operações — 51067</strong>.</p>
+        <div class="final-stats">
+          <div><span>MOEDAS</span><strong id="finalScore">0</strong></div>
+          <div><span>ACERTOS</span><strong id="finalHits">0/6</strong></div>
+          <div><span>TEMPO</span><strong id="finalTime">00:00</strong></div>
+        </div>
+        <p id="finalMessage"></p>
+        <button id="restartBtn" class="pixel-btn primary">JOGAR NOVAMENTE</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@500;700;900&display=swap');
+
+:root{
+  --blue:#2e79dc;
+  --deep:#14244b;
+  --yellow:#ffd62a;
+  --orange:#ff8b21;
+  --green:#39b54a;
+  --red:#ef3340;
+  --cream:#fff8df;
+  --shadow:0 12px 0 rgba(0,0,0,.18), 0 20px 40px rgba(0,0,0,.18);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Nunito,Arial,sans-serif;background:#0e2a55;color:#13203b}
+body{overflow-x:hidden}
+button{font:inherit}
+.screen{display:none;min-height:100vh;position:relative}
+.screen.active{display:block}
+
+#startScreen{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:#2785e8;
+}
+.cover-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.2),transparent 25%),
+    linear-gradient(180deg,rgba(39,133,232,.95),rgba(24,76,160,.92));
+}
+.cover-bg:after{
+  content:"";position:absolute;inset:0;
+  background-image:url("assets/capa.png");
+  background-repeat:no-repeat;background-position:center 54%;
+  background-size:min(78vw,760px) auto;
+  filter:drop-shadow(0 18px 15px rgba(0,0,0,.28));
+}
+.start-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,47,103,.25),rgba(8,28,67,.45))}
+.start-content{position:relative;z-index:2;text-align:center;color:#fff;padding:28px;max-width:900px}
+.pixel-badge{
+  display:inline-block;background:#ffcf1a;color:#111;padding:12px 18px;
+  border:4px solid #111;box-shadow:6px 6px 0 #111;
+  font-family:"Press Start 2P",monospace;font-size:clamp(12px,2vw,20px);
+}
+.start-content h1{
+  margin:18px 0 4px;font-family:"Press Start 2P",monospace;
+  font-size:clamp(28px,6vw,64px);text-shadow:5px 5px 0 #b81e2c;
+}
+.subtitle{
+  font-family:"Press Start 2P",monospace;font-size:clamp(14px,2.5vw,28px);
+  color:#ffe54b;text-shadow:3px 3px 0 #17264c;margin:12px 0;
+}
+.section-code{font-weight:900;font-size:18px;margin-bottom:24px}
+.hint{max-width:620px;margin:18px auto;font-weight:700;text-shadow:1px 2px 0 rgba(0,0,0,.35)}
+
+.pixel-btn{
+  border:4px solid #111;border-radius:10px;padding:14px 22px;cursor:pointer;
+  font-family:"Press Start 2P",monospace;font-size:13px;line-height:1.5;
+  box-shadow:6px 6px 0 #111;transition:transform .12s,box-shadow .12s;
+}
+.pixel-btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #111}
+.pixel-btn:active{transform:translate(4px,4px);box-shadow:2px 2px 0 #111}
+.primary{background:var(--yellow);color:#171717}
+.answer-btn{background:#35c56b;color:#08251a;width:100%;margin-top:18px}
+.answer-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:6px 6px 0 #111}
+
+#gameScreen{background:#5aa4f4;overflow:hidden}
+.hud{
+  position:fixed;z-index:20;top:12px;left:50%;transform:translateX(-50%);
+  width:min(1100px,calc(100% - 24px));display:flex;justify-content:space-between;gap:10px;
+}
+.hud-item{
+  background:#fff8d9;border:4px solid #171717;border-radius:10px;padding:8px 14px;
+  box-shadow:4px 4px 0 #171717;min-width:125px;text-align:center;
+}
+.hud-label{display:block;font:10px "Press Start 2P",monospace;color:#d33b2f;margin-bottom:5px}
+.hud-item strong{font-size:17px}
+.game-world{
+  min-height:100vh;position:relative;isolation:isolate;
+  background-image:linear-gradient(rgba(75,139,232,.55),rgba(75,139,232,.55)),url("assets/fundo.png");
+  background-size:cover;background-position:center;
+}
+.cloud{position:absolute;width:120px;height:42px;background:#fff;border:4px solid #1b1b1b;border-radius:50%;opacity:.95}
+.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border:4px solid #1b1b1b;border-bottom:0;border-radius:50%}
+.cloud:before{width:48px;height:48px;left:20px;top:-26px}.cloud:after{width:56px;height:56px;right:18px;top:-34px}
+.cloud1{top:95px;left:7%}.cloud2{top:145px;right:8%;transform:scale(.75)}
+.hill{position:absolute;bottom:150px;background:#3bbd43;border:5px solid #113a25;border-bottom:0;border-radius:90px 90px 0 0}
+.hill1{left:-40px;width:260px;height:170px}.hill2{right:3%;width:220px;height:140px}
+.pipe{position:absolute;right:10%;bottom:150px;width:100px;height:110px;background:#26a947;border:5px solid #123b24;border-bottom:0;border-radius:10px 10px 0 0}
+.pipe:before{content:"";position:absolute;left:-15px;top:-18px;width:120px;height:28px;background:#37c957;border:5px solid #123b24;border-radius:7px}
+.brick-row{position:absolute;bottom:130px;left:0;right:0;height:40px;background:repeating-linear-gradient(90deg,#bd551a 0 55px,#ef7b2a 55px 59px,#9d3b13 59px 62px);border-top:4px solid #64250e;border-bottom:4px solid #64250e}
+.ground{position:absolute;bottom:0;left:0;right:0;height:135px;background:repeating-linear-gradient(0deg,#9b4717 0 22px,#d76c21 22px 27px);border-top:7px solid #56230f}
+.player{position:absolute;right:25%;bottom:152px;width:44px;height:75px;z-index:2;animation:walk 1.3s infinite steps(2)}
+.player .cap{position:absolute;top:0;left:5px;width:34px;height:17px;background:#e31d2a;border:4px solid #151515;border-radius:15px 15px 4px 4px}
+.player .head{position:absolute;top:15px;left:9px;width:28px;height:25px;background:#f2ad78;border:4px solid #151515;border-radius:8px}
+.player .body{position:absolute;top:38px;left:5px;width:34px;height:35px;background:#1d6fe3;border:4px solid #151515;border-radius:6px}
+@keyframes walk{50%{transform:translateY(-5px)}}
+
+.quiz-wrap{
+  position:relative;z-index:5;min-height:100vh;display:flex;align-items:center;
+  justify-content:center;padding:90px 18px 160px;
+}
+.quiz-card{
+  width:min(1000px,100%);max-height:calc(100vh - 150px);overflow:auto;
+  background:rgba(255,251,233,.97);border:5px solid #151515;border-radius:18px;
+  box-shadow:var(--shadow);padding:24px;
+}
+.question-top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.question-number,.question-type{
+  font-family:"Press Start 2P",monospace;font-size:11px;padding:8px 10px;border:3px solid #171717;
+}
+.question-number{background:#ffd42e}.question-type{background:#c6f5d2}
+.quiz-card h2{font-size:26px;margin:16px 0 12px;color:#17376d}
+.prompt{white-space:pre-line;font-size:16px;line-height:1.55;font-weight:600}
+.question-image-wrap{margin:14px auto;text-align:center;background:#fff;border:3px solid #17376d;border-radius:12px;padding:10px}
+.question-image-wrap img{max-width:100%;height:auto;display:block;margin:auto}
+.hidden{display:none!important}
+.multi-note{margin:12px 0;padding:10px 12px;background:#fff1ad;border:3px dashed #a66a00;font-weight:900}
+.options{display:grid;gap:10px;margin-top:18px}
+.option{
+  display:flex;gap:12px;align-items:flex-start;padding:14px;border:3px solid #253452;
+  border-radius:12px;background:#fff;cursor:pointer;transition:.15s;line-height:1.4;font-weight:800;
+}
+.option:hover{transform:translateX(4px);background:#eef7ff}
+.option.selected{background:#d7edff;border-color:#1972d2;box-shadow:4px 4px 0 #1972d2}
+.option input{margin-top:4px;accent-color:#1972d2;transform:scale(1.25)}
+.option-letter{font-family:"Press Start 2P",monospace;color:#d52d2d;font-size:12px;min-width:24px}
+
+#feedbackScreen{background:linear-gradient(180deg,#56a5f4 0 55%,#53b95c 55% 100%);display:none;align-items:center;justify-content:center;padding:25px}
+#feedbackScreen.active{display:flex}
+.feedback-panel,.end-panel{
+  width:min(900px,100%);background:#fff8df;border:5px solid #111;border-radius:18px;
+  box-shadow:var(--shadow);padding:28px;text-align:center;position:relative;z-index:2;
+}
+.feedback-icon{font-size:76px;line-height:1;margin:0 auto 8px;animation:bounce .7s}
+.feedback-panel h2,.end-panel h2{font-family:"Press Start 2P",monospace;font-size:clamp(22px,4vw,40px);margin:8px 0 12px}
+.feedback-panel p,.end-panel p{font-size:17px;line-height:1.55}
+.answer-summary{margin:16px 0;padding:12px;background:#e7f2ff;border:3px solid #275ea8;border-radius:10px}
+.explanation-box{text-align:left;background:#fff;border:4px solid #17376d;border-radius:12px;padding:16px;margin:18px 0}
+.explanation-title{font-family:"Press Start 2P",monospace;font-size:12px;color:#17376d;margin-bottom:10px}
+.explanation-box p{margin:0;font-weight:600}
+@keyframes bounce{50%{transform:scale(1.2) rotate(-4deg)}}
+
+.final-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.final-stats div{background:#e9f5ff;border:4px solid #17376d;border-radius:12px;padding:14px}
+.final-stats span{display:block;font:10px "Press Start 2P",monospace;margin-bottom:8px}
+.final-stats strong{font-size:26px}
+
+#coinLayer{position:fixed;inset:0;z-index:50;pointer-events:none;overflow:hidden}
+.coin{
+  position:absolute;width:30px;height:30px;
+  background-image:url("assets/moeda.png");background-size:cover;background-position:center;
+  filter:drop-shadow(2px 3px 0 rgba(0,0,0,.25));
+  animation:coinFall 1.3s ease-in forwards;
+}
+@keyframes coinFall{
+  0%{transform:translateY(-40px) rotateY(0) scale(.65);opacity:0}
+  15%{opacity:1}
+  70%{transform:translateY(65vh) rotateY(540deg) scale(1)}
+  100%{transform:translateY(100vh) rotateY(720deg) scale(.7);opacity:0}
+}
+
+@media(max-width:700px){
+  .hud{top:6px}.hud-item{min-width:0;padding:6px 8px}.hud-label{font-size:8px}.hud-item strong{font-size:13px}
+  .quiz-card{padding:16px;max-height:calc(100vh - 120px)}
+  .prompt{font-size:15px}.quiz-card h2{font-size:21px}
+  .final-stats{grid-template-columns:1fr}
+  .player{right:12%}.pipe{right:2%}
+}
